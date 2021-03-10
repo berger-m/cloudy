@@ -21,14 +21,27 @@ The app will be listening for requests on `http://localhost:8080/climate/summary
 ```
 cd <PATH/TO/CLONE/DIR/>cloudy
 gradlew.bat clean build
+```
+This will build and run the automated tests.  
+To launch the cloudy webapp execute:
+
+```
 gradlew.bat :ui-tl-cloudy:bootRun
 ```
 
-## Subprojects
-At the moment there are two subprojects of `cloudy`:
-* [ds-rdb-cloudy](subprojects/ds-rdb-cloudy/README.md)
-* [ui-tl-cloudy](subprojects/ui-tl-cloudy/README.md)
+The app will be listening for requests on `http://localhost:8080/climate/summary`
+
+## Useful project links
+
+After the project has been built and tested you can inspect the automated build reports:  
+* [Automated Code Quality Report](submodules/ui-tl-cloudy/build/reports/spotbugs/main/spotbugs.html) (SpotBugs)
+* [Automated Code Style Report](submodules/ui-tl-cloudy/build/reports/checkstyle/main.html) (Checkstyle)
+* [Automated Test Report](submodules/ui-tl-cloudy/build/reports/tests/test/index.html) (JUnit + Mockito)
+* [Automated Test Code Coverage Report](submodules/ui-tl-cloudy/build/reports/jacoco/test/html/index.html) (JaCoCo)
   
+Manual reports:
+[JAR+Class inspection tool](submodules/ui-tl-cloudy/build/reports/tattletale/index.html) (Tattletale, task must be run manually)
+
 ## Subproject Naming Convention
 * **ds**- prefix for a 'DataStore', followed by the type of data store (rdb-|noSql-|fs-|cache-), followed by the name of the data store (for rdb the name would be the schema, for filesystems it might be the directory, and so on)  
 * **rdb**- prefix for the representation of the schema in the 'RelationalDataBase', followed by data store name (oracle-|postgreSQL-)  

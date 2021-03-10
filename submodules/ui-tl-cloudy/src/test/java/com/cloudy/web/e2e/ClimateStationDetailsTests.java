@@ -54,7 +54,7 @@ public class ClimateStationDetailsTests extends BaseClimateSpringBootTest {
 	 */
 	@Test
 	void successPathNavigateToStationDetailsTest() {
-		
+
 		// Navigate to the stationDetails page
 		final String climateSummaryUrl = UriComponentsBuilder.fromUri(baseUrl.toUri())
 				.pathSegment(ClimateController.SEGMENT, ClimateSummaryController.SEGMENT).build().toUriString();
@@ -77,7 +77,7 @@ public class ClimateStationDetailsTests extends BaseClimateSpringBootTest {
 		assertEquals(expectedStationName, actualStationName);
 		WebElement linkToStationDetailsPage = page
 				.getTableSummary()[0][ClimateSummaryPage.SUMMARY_TABLE_COLUMN_MEAN_TEMP];
-		
+
 		// Arrived at the stationDetails page
 		final ClimateStationDetailsPage stationPage = page.visitStationDetailsPage(linkToStationDetailsPage);
 		assertNotNull(stationPage);
@@ -85,11 +85,11 @@ public class ClimateStationDetailsTests extends BaseClimateSpringBootTest {
 
 		final List<WebElement> elements = driver.findElements(By.id("tableDetailsIsEmptyMsg"));
 		assertNotNull(elements);
-		assertTrue(elements.isEmpty());		
-		assertEquals ( TestData.NUM_OF_NORTH_COWICHAN_BC_ENTRIES, stationPage.getTableDetails().length );
-		
+		assertTrue(elements.isEmpty());
+		assertEquals(TestData.NUM_OF_NORTH_COWICHAN_BC_ENTRIES, stationPage.getTableDetails().length);
+
 	}
-	
+
 	@Test
 	void successPathBackToSummaryTest() {
 		final Long invalidStationId = Long.valueOf(-1);
