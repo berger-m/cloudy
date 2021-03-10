@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN" monitorInterval="30">
+  <Appenders>
+    <Console name="Console" target="SYSTEM_OUT">
+      <PatternLayout pattern="%d{ISO8601}{UTC}Z [%t] %-5level %logger{36}.%M - %msg%n"/>
+    </Console>
+    <RollingFile
+	    name="rollingFile"
+	    fileName="${sys:dir.log:-build/log/test}/${sys:app.name:-defaultAppName}.log"
+	    filePattern="${sys:dir.log:-build/log/test}/archive/${sys:app.name:-defaultAppName}.%i.log.gz"
+	    ignoreExceptions="false">
+	    <PatternLayout pattern="%d{ISO8601}{UTC}Z [%t] %-5level %logger{36}.%M - %msg%n"/>
+	    <Policies>
+	        <SizeBasedTriggeringPolicy size="20MB" />
+	    </Policies>
+	    <DefaultRolloverStrategy max="10" />
+	</RollingFile>
+  </Appenders>
+
+  <Loggers>
+    <Root level="TRACE">
+      <AppenderRef ref="Console"/>
+      <AppenderRef ref="rollingFile"/>
+      <!-- TODO RewriteAppender This can be used to mask sensitive information such as passwords or to inject information into each event.
+      	https://logging.apache.org/log4j/2.x/manual/appenders.html -->
+    </Root>
+  	
+  </Loggers>
+</Configuration>

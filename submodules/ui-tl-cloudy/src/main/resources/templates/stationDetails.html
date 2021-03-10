@@ -1,0 +1,63 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+   <head>
+      <title>Detailed Climate Records for Station</title>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+      <link rel="stylesheet" type="text/css" media="all" href="../static/css/cloudy.css" th:href="@{/css/cloudy.css}" />
+   </head>
+   <body>
+      <div>
+         <table>
+            <thead>
+               <tr>
+                  <th id="tableDetailsTitle" colspan="6">Climate Records</th>
+               </tr>
+               <tr>
+                  <th>Station Name</th>
+                  <th>Province</th>
+                  <th>Date</th>
+                  <th>Mean Temp</th>
+                  <th>Highest Monthly Max Temp</th>
+                  <th>Lowest Monthly Min Temp</th>
+               </tr>
+            </thead>
+            <tbody>
+               <tr th:each="climateRecord : ${climateRecords}" th:class="${climateRecordStat.odd}? 'odd' : 'even'">
+                  <td id="tableDetailsFieldStationNameRow1" th:id="'tableDetailsFieldStationNameRow' + ${climateRecordStat.index}" 
+                     th:text="${climateRecord.station.name}">Station Name</td>
+                  <td id="tableDetailsFieldProvRow1" th:id="'tableDetailsFieldProvRow' + ${climateRecordStat.index}" 
+                     th:text="${climateRecord.station.province}">Province</td>
+                  <td id="tableDetailsFieldDateRow1" th:id="'tableDetailsFieldDateRow' + ${climateRecordStat.index}" 
+                     th:text="${climateRecord.date}">Date</td>
+                  <td id="tableDetailsFieldMeanTempRow1" th:id="'tableDetailsFieldMeanTempRow' + ${climateRecordStat.index}" 
+                     th:text="${climateRecord.meanTemp != null} ? ${climateRecord.meanTemp} : 'NA'">MT</td>
+                  <td id="tableDetailsFieldHmmtRow1" th:id="'tableDetailsFieldHmmtRow' + ${climateRecordStat.index}" 
+                     th:text="${climateRecord.highestMonthlyMaxTemp != null} ? ${climateRecord.highestMonthlyMaxTemp} : 'NA'">NA</td>
+                  <td id="tableDetailsFieldLmmtRow1" th:id="'tableDetailsFieldLmmtRow' + ${climateRecordStat.index}" 
+                     th:text="${climateRecord.lowestMonthlyMinTemp != null} ? ${climateRecord.lowestMonthlyMinTemp} : 'NA'">NA</td>
+               </tr>
+               <tr th:if="${climateRecords.empty}" class="odd">
+                  <td id="tableDetailsIsEmptyMsg" colspan="6" th:class="odd">No Climate Records</td>
+               </tr>
+               <tr th:if="${climateRecords.empty}" class="even">
+                  <td>Fake Station Name 0001</td>
+                  <td>AB</td>
+                  <td>2018-01-06</td>
+                  <td>12.0</td>
+                  <td>25.0</td>
+                  <td>-12.0</td>
+               </tr>
+               <tr th:if="${climateRecords.empty}" class="odd">
+                  <td>Fake Station Name 0002</td>
+                  <td>BC</td>
+                  <td>2018-01-07</td>
+                  <td>13.0</td>
+                  <td>22.3</td>
+                  <td>-5.7</td>
+               </tr>
+            </tbody>
+         </table>
+         <a href="summary.html" th:href="@{/climate/summary}"><input id="stationDetailsBackBtn" type="button" value="back" /></a>
+      </div>
+   </body>
+</html>

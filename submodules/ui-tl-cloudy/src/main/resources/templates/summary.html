@@ -1,0 +1,69 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+   <head>
+      <title>Summary of Climate Records</title>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+      <link rel="stylesheet" type="text/css" media="all" href="../static/css/cloudy.css" th:href="@{/css/cloudy.css}" />
+   </head>
+   <body>
+      <div>
+         <form action="#" th:action="@{/climate/summary}" th:object="${filterDateRange}" method="post">
+            <table>
+               <thead>
+                  <tr>
+                     <th colspan="4">Filter Climate Records</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr th:class="odd">
+                     <td><label for="date">From date:</label></td>
+                     <td><input id="inputFilterParamFromDate" type="date" th:field="*{filterParams['fromDate']}" value="0001-01-01" /></td>
+                     <td><label for="date">To date:</label></td>
+                     <td><input id="inputFilterParamToDate" type="date" th:field="*{filterParams['toDate']}" value="9999-01-01" /></td>
+                  </tr>
+                  <tr th:class="even">
+                     <td colspan="4"><input id="inputFilterParamSubmitBtn" type="submit" value="filter" /></td>
+                  </tr>
+               </tbody>
+            </table>
+         </form>
+      </div>
+      <br/>	
+      <div>
+         <table>
+            <thead>
+               <tr>
+                  <th id="tableSummaryTitle" colspan="3">Climate Records</th>
+               </tr>
+               <tr>
+                  <th>Station Name</th>
+                  <th>Date</th>
+                  <th>Mean Temperature</th>
+               </tr>
+            </thead>
+            <tbody>
+               <tr th:each="climateRecord : ${climateRecords}" th:class="${climateRecordStat.odd}? 'odd' : 'even'">
+                  <td id="tableSummaryFieldStationNameRow1" th:id="'tableSummaryFieldStationNameRow' + ${climateRecordStat.index}" th:text="${climateRecord.station.name}">Station Name</td>
+                  <td id="tableSummaryFieldDateRow1" th:id="'tableSummaryFieldDateRow' + ${climateRecordStat.index}" th:text="${climateRecord.date}">Date</td>
+                  <td><a id="tableSummaryFieldMeanTempRow1" th:id="'tableSummaryFieldMeanTempRow' + ${climateRecordStat.index}" 
+                  	 href="stationDetails.html" th:href="@{/climate/stationDetails/{id}(id=${climateRecord.station.id})}" 
+                     th:text="${climateRecord.meanTemp != null} ? ${climateRecord.meanTemp} : 'NA' ">Mean Temperature</a></td>
+               </tr>
+               <tr th:if="${climateRecords.empty}" class="odd">
+                  <td id="tableSummaryIsEmptyMsg" colspan="3" th:class="odd">No Climate Records</td>
+               </tr>
+               <tr th:if="${climateRecords.empty}" class="even">
+                  <td>Fake Station Name 0001</td>
+                  <td>2018-01-06</td>
+                  <td><a href="stationDetails.html">12.0</a></td>
+               </tr>
+               <tr th:if="${climateRecords.empty}" class="odd">
+                  <td>Fake Station Name 0002</td>
+                  <td>2018-01-07</td>
+                  <td><a href="stationDetails.html">13.0</a></td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </body>
+</html>

@@ -1,0 +1,3 @@
+eclipse.preferences.version=1
+encoding//src/main/resources/data/eng-climate-summary.csv=UTF-8
+encoding//src/test/resources/data/test-eng-climate-summary.csv=UTF-8
