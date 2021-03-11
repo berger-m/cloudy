@@ -10,6 +10,14 @@ import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import com.cloudy.web.controller.ClimateStationDetailsController;
+
+/**
+ * This page represents the contents of the
+ * {@code resources/templates/stationDetails.html} template.
+ * 
+ * @see ClimateStationDetailsController
+ */
 public class ClimateStationDetailsPage extends AbstractClimatePage {
 
 	public static final String PAGE_TITLE = "Detailed Climate Records for Station";

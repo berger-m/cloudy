@@ -2,6 +2,9 @@ package com.cloudy.web.pages;
 
 import org.openqa.selenium.WebDriver;
 
+/**
+ * Elements common to all climate pages
+ */
 public class AbstractClimatePage {
 
 	private WebDriver driver;

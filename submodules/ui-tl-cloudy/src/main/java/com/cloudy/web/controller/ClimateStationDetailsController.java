@@ -7,13 +7,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.cloudy.business.entities.Station;
 import com.cloudy.business.entities.repositories.EntryRepository;
 
 /**
  * Handles requests for the StationDetails page
  * (resources/templates/stationDetails.html) on URL Path climate/stationDetails.
  * 
- * This page provides the full details of each {@link Entry} associated with the selected {@link Station}
+ * This page provides the full details of each {@link Entry} associated with the
+ * selected {@link Station}
  */
 @Controller
 @RequestMapping(AbstractClimateController.SEGMENT + "/" + ClimateStationDetailsController.SEGMENT)
@@ -29,7 +31,7 @@ public class ClimateStationDetailsController extends AbstractClimateController {
 	/**
 	 * Searches the Cloudy db for all records associated with this {@link Station}
 	 * 
-	 * @param id {@link String} uniquely identifies a {@link Station}
+	 * @param id    {@link String} uniquely identifies a {@link Station}
 	 * @param model {@link Model}
 	 * @return {@link String}
 	 */

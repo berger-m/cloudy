@@ -14,6 +14,14 @@ import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import com.cloudy.web.controller.ClimateSummaryController;
+
+/**
+ * This page represents the contents of the
+ * {@code resources/templates/summary.html} template.
+ * 
+ * @see ClimateSummaryController
+ */
 public class ClimateSummaryPage extends AbstractClimatePage {
 
 	public static final String PAGE_TITLE = "Summary of Climate Records";
