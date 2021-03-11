@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+import java.util.Collections;
 import java.util.List;
 
 import org.junit.jupiter.api.AfterEach;
@@ -56,7 +57,7 @@ public class ClimateSummaryTests extends BaseClimateSpringBootTest {
 	 */
 	@Test
 	void successPathPageLoadNoEntriesTest() {
-		Mockito.when(entryRepo.findAll()).thenReturn(List.of());
+		Mockito.when(entryRepo.findAll()).thenReturn(Collections.emptyList());
 		final int expectedNumOfRows = 0;
 		final ClimateSummaryPage page = ClimateSummaryPage.to(driver);
 		assertClimatePageLoadSuccess(ClimateSummaryPage.PAGE_TITLE, driver);
@@ -66,8 +67,6 @@ public class ClimateSummaryTests extends BaseClimateSpringBootTest {
 		assertFalse(elements.isEmpty());
 		assertEquals(expectedNumOfRows, page.getTableSummary().length);
 	}
-	
-
 
 	@AfterEach
 	void destroy() {

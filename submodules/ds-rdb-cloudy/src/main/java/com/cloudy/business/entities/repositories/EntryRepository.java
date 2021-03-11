@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import com.cloudy.business.entities.Entry;
+import com.cloudy.business.entities.Station;
 
 /**
  * Persist {@link Entry} objects as rows in a relational database
