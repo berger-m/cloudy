@@ -5,6 +5,12 @@ import java.time.LocalDate;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
+/**
+ * Represents a line in the database population file
+ * (eng-climate-summary.csv)<br>
+ * Using JAX-B annotations with the jackson-dataformat-csv library to read the
+ * entries in the file
+ */
 @XmlType(propOrder = { ClimateRecord.CSV_PROP_STATION_NAME, ClimateRecord.CSV_PROP_PROVINCE,
 		ClimateRecord.CSV_PROP_DATE, ClimateRecord.CSV_PROP_MEAN_TEMP, ClimateRecord.CSV_PROP_HMMT,
 		ClimateRecord.CSV_PROP_LMMT })

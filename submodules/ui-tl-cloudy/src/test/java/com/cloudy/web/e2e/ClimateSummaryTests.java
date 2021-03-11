@@ -38,8 +38,6 @@ public class ClimateSummaryTests extends BaseClimateSpringBootTest {
 
 	private UriComponents baseUrl;
 
-	// @Autowired
-	// private MockMvc mvc;
 
 	private WebDriver driver;
 

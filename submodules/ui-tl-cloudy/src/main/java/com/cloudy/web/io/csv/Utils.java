@@ -17,6 +17,12 @@ import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 
 public class Utils {
 
+	/**
+	 * Provides a Jackson CsvMapper that has been configured date serializers and
+	 * deserializers that match the format of the CSV file
+	 * 
+	 * @return {@link CsvMapper} mapper
+	 */
 	public static CsvMapper getCsvMapper() {
 		final SimpleModule csvDateModule = new SimpleModule();
 		csvDateModule.addDeserializer(LocalDate.class,
@@ -33,6 +39,12 @@ public class Utils {
 		return csvMapper;
 	}
 
+	/**
+	 * Provides the schema that matches the provided CSV file and ignores the header
+	 * line
+	 * 
+	 * @return {@link CsvSchema} schema
+	 */
 	public static CsvSchema getClimateRecordFileSchema() {
 		final CsvSchema schema = CsvSchema.builder() //
 				.addColumn(ClimateRecord.CSV_PROP_STATION_NAME) // Station_Name
@@ -45,6 +57,13 @@ public class Utils {
 		return schema;
 	}
 
+	/**
+	 * A convenience utility for translating a {@link ClimateRecord} bean into a
+	 * {@link Station} DB-entity.
+	 * 
+	 * @param line {@link ClimateRecord} source bean
+	 * @return {@link Station} DB-entity counterpart
+	 */
 	public static Station convertClimateRecordToStation(final ClimateRecord line) {
 		final Station newStation = new Station();
 		newStation.setName(line.getStationName());
@@ -52,6 +71,13 @@ public class Utils {
 		return newStation;
 	}
 
+	/**
+	 * A convenience utility for translating a {@link ClimateRecord} bean into a
+	 * {@link Entry} DB-entity.
+	 * 
+	 * @param line {@link ClimateRecord} source bean
+	 * @return {@link Entry} DB-entity counterpart
+	 */
 	public static Entry convertClimateRecordToEntry(final ClimateRecord line) {
 		final Entry entry = new Entry();
 		entry.setDate(line.getDate());

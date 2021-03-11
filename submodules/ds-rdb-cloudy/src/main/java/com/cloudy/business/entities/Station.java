@@ -13,6 +13,11 @@ import javax.validation.constraints.NotBlank;
 import com.cloudy.business.entities.attributes.Identifiable;
 import com.cloudy.business.entities.attributes.OptimisticLock;
 
+/**
+ * A DB-entity representing a climate station<br>
+ * Annotated with JPA to allow for easy migration between database
+ * implementations.
+ */
 @Entity
 @Table(name = "stations", uniqueConstraints = {
 		@UniqueConstraint(columnNames = { Station.DB_COLUMN_STATION_NAME, Station.DB_COLUMN_PROVINCE }) })
@@ -28,11 +33,13 @@ public class Station implements Identifiable, OptimisticLock<Integer> {
 	private Integer version;
 
 	public static final String DB_COLUMN_STATION_NAME = "name";
+	/** Name of the climate station */
 	@NotBlank(message = DB_COLUMN_STATION_NAME + " is mandatory")
 	@Column(name = DB_COLUMN_STATION_NAME)
 	private String name;
 
 	public static final String DB_COLUMN_PROVINCE = "province";
+	/** Province where the station is located */
 	@NotBlank(message = DB_COLUMN_PROVINCE + " is mandatory")
 	@Column(name = DB_COLUMN_PROVINCE)
 	private String province;

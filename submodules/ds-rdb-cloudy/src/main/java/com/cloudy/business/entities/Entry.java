@@ -16,37 +16,49 @@ import javax.persistence.Version;
 import com.cloudy.business.entities.attributes.Identifiable;
 import com.cloudy.business.entities.attributes.OptimisticLock;
 
+/**
+ * A DB-entity representing a daily climate station report<br>
+ * Annotated with JPA to allow for easy migration between database
+ * implementations.
+ */
 @Entity
 @Table(name = "entries")
 public class Entry implements Identifiable, OptimisticLock<Integer> {
 
 	public static final Entry EMPTY_ENTRY = new Entry();
 
+	/** Uniquely identifies an entry */
 	@Id
 	@Column(name = "entry_id")
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 
+	/** Version number increments on modification (used for optimistic locking) */
 	@Version
 	private Integer version;
 
+	/** The station that this reading came from */
 	@ManyToOne
 	@JoinColumn(name = Station.DB_COLUMN_ID)
 	private Station station;
 
 	public static final String DB_COLUMN_DATE = "date";
+	/** Date of the weather record */
 	@Column(name = DB_COLUMN_DATE)
 	private LocalDate date;
 
 	public static final String DB_COLUMN_MEAN_TEMP = "meanTemp";
+	/** The mean temperature of the day */
 	@Column(name = DB_COLUMN_MEAN_TEMP)
 	private Double meanTemp;
 
 	public static final String DB_COLUMN_HMMT = "highestMonthlyMaxTemp";
+	/** The highest monthly maximum temperature */
 	@Column(name = DB_COLUMN_HMMT)
 	private Double highestMonthlyMaxTemp;
 
 	public static final String DB_COLUMN_LMMT = "lowestMonthlyMinTemp";
+	/** The lowest monthly minimum temperature */
 	@Column(name = DB_COLUMN_LMMT)
 	private Double lowestMonthlyMinTemp;
 

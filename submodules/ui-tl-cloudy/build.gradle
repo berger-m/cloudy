@@ -12,7 +12,6 @@ buildscript {
 	    // You can declare any Maven/Ivy/file repository here.
 	    // Troubleshooting: https://repo.jfrog.org/artifactory/libs-release-bintray
 	    jcenter()
-	    //mavenCentral()
 	}
 
     dependencies {
