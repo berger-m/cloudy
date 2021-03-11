@@ -24,8 +24,8 @@ import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import com.cloudy.web.BaseClimateSpringBootTest;
-import com.cloudy.web.controller.ClimateController;
-import com.cloudy.web.controller.ClimateDetailsController;
+import com.cloudy.web.controller.AbstractClimateController;
+import com.cloudy.web.controller.ClimateStationDetailsController;
 import com.cloudy.web.controller.ClimateSummaryController;
 import com.cloudy.web.data.TestData;
 import com.cloudy.web.pages.ClimateStationDetailsPage;
@@ -57,7 +57,7 @@ public class ClimateStationDetailsTests extends BaseClimateSpringBootTest {
 
 		// Navigate to the stationDetails page
 		final String climateSummaryUrl = UriComponentsBuilder.fromUri(baseUrl.toUri())
-				.pathSegment(ClimateController.SEGMENT, ClimateSummaryController.SEGMENT).build().toUriString();
+				.pathSegment(AbstractClimateController.SEGMENT, ClimateSummaryController.SEGMENT).build().toUriString();
 		driver.get(climateSummaryUrl);
 		ClimateSummaryPage page = ClimateSummaryPage.to(driver);
 		assertClimatePageLoadSuccess(ClimateSummaryPage.PAGE_TITLE, driver);
@@ -94,7 +94,7 @@ public class ClimateStationDetailsTests extends BaseClimateSpringBootTest {
 	void successPathBackToSummaryTest() {
 		final Long invalidStationId = Long.valueOf(-1);
 		final String climateStationDetailsInvalidUrl = UriComponentsBuilder.fromUri(baseUrl.toUri())
-				.pathSegment(ClimateController.SEGMENT, ClimateDetailsController.SEGMENT, invalidStationId.toString())
+				.pathSegment(AbstractClimateController.SEGMENT, ClimateStationDetailsController.SEGMENT, invalidStationId.toString())
 				.build().toUriString();
 		driver.get(climateStationDetailsInvalidUrl);
 		final ClimateStationDetailsPage stationPage = ClimateStationDetailsPage.to(driver);
@@ -111,7 +111,7 @@ public class ClimateStationDetailsTests extends BaseClimateSpringBootTest {
 	void errorPathInvalidStationIdParamTest() {
 		final Long invalidStationId = Long.valueOf(-1);
 		final String climateStationDetailsInvalidUrl = UriComponentsBuilder.fromUri(baseUrl.toUri())
-				.pathSegment(ClimateController.SEGMENT, ClimateDetailsController.SEGMENT, invalidStationId.toString())
+				.pathSegment(AbstractClimateController.SEGMENT, ClimateStationDetailsController.SEGMENT, invalidStationId.toString())
 				.build().toUriString();
 		driver.get(climateStationDetailsInvalidUrl);
 		final ClimateStationDetailsPage stationPage = ClimateStationDetailsPage.to(driver);

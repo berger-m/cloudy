@@ -2,13 +2,16 @@ package com.cloudy.web.controller;
 
 import com.cloudy.business.entities.repositories.EntryRepository;
 
-public class ClimateController {
+/**
+ * Common elements to the ClimateControllers
+ */
+public abstract class AbstractClimateController {
 
-	public static final String SEGMENT = "/climate";
+	public static final String SEGMENT = "climate";
 
 	private EntryRepository entryRepo;
 
-	public ClimateController(final EntryRepository paramEntryRepo) {
+	public AbstractClimateController(final EntryRepository paramEntryRepo) {
 		setEntryRepo(paramEntryRepo);
 	}
 

@@ -23,7 +23,7 @@ import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import com.cloudy.web.BaseClimateSpringBootTest;
-import com.cloudy.web.controller.ClimateController;
+import com.cloudy.web.controller.AbstractClimateController;
 import com.cloudy.web.controller.ClimateSummaryController;
 import com.cloudy.web.data.TestData;
 import com.cloudy.web.pages.ClimateStationDetailsPage;
@@ -38,14 +38,13 @@ public class ClimateSummaryTests extends BaseClimateSpringBootTest {
 
 	private UriComponents baseUrl;
 
-
 	private WebDriver driver;
 
 	@BeforeEach
 	void setup(final WebApplicationContext context) {
 		driver = MockMvcHtmlUnitDriverBuilder.webAppContextSetup(context).build();
 		baseUrl = UriComponentsBuilder.newInstance().scheme("http").host("localhost").port(port)
-				.pathSegment(ClimateController.SEGMENT, ClimateSummaryController.SEGMENT).build();
+				.pathSegment(AbstractClimateController.SEGMENT, ClimateSummaryController.SEGMENT).build();
 		driver.get(baseUrl.toString());
 	}
 
@@ -116,12 +115,11 @@ public class ClimateSummaryTests extends BaseClimateSpringBootTest {
 		assertNotNull(stationPage);
 		assertClimatePageLoadSuccess(ClimateStationDetailsPage.PAGE_TITLE, driver);
 	}
-
+	
 	@AfterEach
 	void destroy() {
 		if (driver != null) {
 			driver.close();
 		}
 	}
-
 }

@@ -9,23 +9,35 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.cloudy.business.entities.repositories.EntryRepository;
 
+/**
+ * Handles requests for the StationDetails page
+ * (resources/templates/stationDetails.html) on URL Path climate/stationDetails.
+ * 
+ * This page provides the full details of each {@link Entry} associated with the selected {@link Station}
+ */
 @Controller
-@RequestMapping(ClimateController.SEGMENT + "/" + ClimateDetailsController.SEGMENT)
-public class ClimateDetailsController extends ClimateController {
-	
+@RequestMapping(AbstractClimateController.SEGMENT + "/" + ClimateStationDetailsController.SEGMENT)
+public class ClimateStationDetailsController extends AbstractClimateController {
+
 	public static final String SEGMENT = "stationDetails";
-	
+
 	@Autowired
-	public ClimateDetailsController ( 
-			final EntryRepository paramEntryRepo ) {
+	public ClimateStationDetailsController(final EntryRepository paramEntryRepo) {
 		super(paramEntryRepo);
 	}
 
+	/**
+	 * Searches the Cloudy db for all records associated with this {@link Station}
+	 * 
+	 * @param id {@link String} uniquely identifies a {@link Station}
+	 * @param model {@link Model}
+	 * @return {@link String}
+	 */
 	@GetMapping("/{id}")
 	public String stationDetails(@PathVariable final String id, final Model model) {
 		long stationId = Long.parseLong(id);
 		model.addAttribute("climateRecords", getEntryRepo().findAllByStation_Id(stationId));
 		return "stationDetails";
 	}
-	
+
 }
