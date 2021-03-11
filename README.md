@@ -3,6 +3,13 @@
 New submodules can be added by creating a gradle project in the 'submodules' directory where they will be automatically discovered.  
 
 ## Compile/Test/Run Instructions
+
+Start by cloning the `cloudy` repository using: 
+
+```
+git clone https://github.com/berger-m/cloudy.git
+```
+
 ### Linux
 ```
 cd <PATH/TO/CLONE/DIR/>cloudy
