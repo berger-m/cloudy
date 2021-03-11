@@ -72,7 +72,7 @@ public class ClimateSummaryController extends AbstractClimateController {
 		filter.getFilterParams().put(FilterParams.KEY_TO_DATE, newToDate);
 
 		model.addAttribute(ATTR_CLIMATE_RECORDS, applyFilter());
-		model.addAttribute(ATTR_FILTER_PARAMS, paramFilter);
+		model.addAttribute(ATTR_FILTER_PARAMS, filter);
 		return "summary";
 	}
 
